@@ -36,23 +36,17 @@ class App extends Component {
 
     return (
       <div className="App">
-        {/* <Subject 
+        <Subject 
           title={this.state.subject.title} 
-          sub={this.state.subject.sub} />         */}
-        <header>
-          <h1><a href='/' onClick={function(e){
-            console.log(e);
-            e.preventDefault();             // 이벤트의 기본적인 동작 방법을 취소
-            // 함수 안에서 this를 사용하면 아무 값도 나오지 않음
-            // this.state.mode = 'welcome';  // 이렇게 하면 render() 함수가 호출되지 않음
-            this.setState({                 // state 값을 바꿀 때는 setState() 함수를 사용해야 함
-              mode: 'welcome'               // state 값을 바꾸고 나면 render() 함수를 호출함
-            });
-            //bind() 함수를 사용하면 this를 사용할 수 있음
-          }.bind(this)}>{this.state.subject.title}</a></h1>
-          {this.state.subject.sub}
-        </header>
-        <TOC data = {this.state.contents} />
+          sub={this.state.subject.sub}
+          
+          // 이벤트 추가
+          onChangePage={function(){
+            this.setState({mode: 'welcome'});
+          }.bind(this)}/>                
+        <TOC onChangePage={function(){          
+          this.setState({mode: 'read'});
+        }.bind(this)} data = {this.state.contents} />
         <Content title={_title} desc={_desc}/>
       </div>
     );
